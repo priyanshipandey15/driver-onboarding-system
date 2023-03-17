@@ -61,3 +61,4 @@ SQL+DOCKER COMMANDS AND STEPS
 Switch from Docker to H2 for local testing
 -Dspring.profiles.active=local
 use <!-- Spring Data JPA using H2 --> dependencies# driver-onboarding-system
+H2 console:localhost:8080/h2-console/
