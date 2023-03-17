@@ -2,7 +2,7 @@ package com.driver.onboarding.com.driver.onboarding.service;
 
 import com.driver.onboarding.com.driver.onboarding.dao.signup.Driver;
 import com.driver.onboarding.com.driver.onboarding.dto.signup.DriverAvailabilityRequest;
-import com.driver.onboarding.com.driver.onboarding.repository.DriverOnboardRepository;
+import com.driver.onboarding.com.driver.onboarding.repository.DriverSignUpRepository;
 import com.driver.onboarding.com.driver.onboarding.repository.TrackingDeviceRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +22,7 @@ public class DriverAvailabilitySvcImplTest {
     private TrackingDeviceRepository trackingDeviceRepository;
 
     @Mock
-    private DriverOnboardRepository driverOnboardRepository;
+    private DriverSignUpRepository driverSignUpRepository;
 
     @InjectMocks
     private DriverAvailabilitySvcImpl driverAvailabilitySvcImpl;
@@ -36,13 +36,13 @@ public class DriverAvailabilitySvcImplTest {
         driver.setEmail("test@example.com");
         driver.setAvailable(false);
 
-        Mockito.when(driverOnboardRepository.findByEmail(driverAvailabilityRequest.getEmail())).thenReturn(driver);
+        Mockito.when(driverSignUpRepository.findByEmail(driverAvailabilityRequest.getEmail())).thenReturn(driver);
 
         boolean result = driverAvailabilitySvcImpl.isAvailable(driverAvailabilityRequest);
 
         assertTrue(result);
         assertTrue(driver.isAvailable());
-        Mockito.verify(driverOnboardRepository).save(driver);
+        Mockito.verify(driverSignUpRepository).save(driver);
     }
 
     @Test
@@ -50,12 +50,12 @@ public class DriverAvailabilitySvcImplTest {
         DriverAvailabilityRequest driverAvailabilityRequest = new DriverAvailabilityRequest();
         driverAvailabilityRequest.setEmail("test@example.com");
 
-        Mockito.when(driverOnboardRepository.findByEmail(driverAvailabilityRequest.getEmail())).thenReturn(null);
+        Mockito.when(driverSignUpRepository.findByEmail(driverAvailabilityRequest.getEmail())).thenReturn(null);
 
         boolean result = driverAvailabilitySvcImpl.isAvailable(driverAvailabilityRequest);
 
         assertFalse(result);
         Mockito.verifyZeroInteractions(trackingDeviceRepository);
-        Mockito.verify(driverOnboardRepository, never()).save(any(Driver.class));
+        Mockito.verify(driverSignUpRepository, never()).save(any(Driver.class));
     }
 }

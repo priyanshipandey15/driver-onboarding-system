@@ -81,23 +81,23 @@ public class DriverController {
         log.info("Listing all the drivers");
         return ResponseEntity.ok(driverOperationSvc.getAllDrivers());
     }
+
     @GetMapping("/driver/{email}")
     public ResponseEntity<Driver> getDriverbyId(String email) {
-        log.info("Listing driver with {email}",email);
-        return  ResponseEntity.ok(driverOperationSvc.getUniqueDrivers(email));
+        log.info("Listing driver with {email}", email);
+        return ResponseEntity.ok(driverOperationSvc.getUniqueDrivers(email));
     }
 
     @DeleteMapping("driver/{email}")
-    public ResponseEntity<String> deleteDriverbyId(String email){
+    public ResponseEntity<String> deleteDriverbyId(String email) {
         driverOperationSvc.deleteDriver(email);
         return ResponseEntity.ok("Deleted");
     }
 
     @PutMapping("/updateDriver")
-    public ResponseEntity<Driver> updateDriver(DriverUpdateRequest driverUpdateRequest){
+    public ResponseEntity<Driver> updateDriver(DriverUpdateRequest driverUpdateRequest) {
         log.info("Updating driver details");
         return ResponseEntity.ok(driverOperationSvc.updateDriver(driverUpdateRequest));
     }
-
 }
 

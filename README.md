@@ -51,7 +51,6 @@ localhost:8080/api/v1/drivers/availability
 
 SQL+DOCKER COMMANDS AND STEPS
 1. Start docker desktop
-2. 
 3. docker ps
 4. docker exec -it <CONTAINER ID> bash
 5. bash-4.4#>mysql -u root -p
