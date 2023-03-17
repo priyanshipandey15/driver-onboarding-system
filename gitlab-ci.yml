@@ -1,0 +1,21 @@
+image: maven:3.8.3-openjdk-11
+
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  stage: build
+  script:
+    - mvn clean package -DskipTests
+
+test:
+  stage: test
+  script:
+    - mvn test
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying the application to production..."

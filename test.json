@@ -1,0 +1,11 @@
+{
+  "carColor": "string",
+  "carLicensePlate": "string",
+  "carModel": "string",
+  "email": "abc@g.com",
+  "firstName": "string",
+  "lastName": "string",
+  "licenseNumber": "string",
+  "password": "string",
+  "phone": "9876543210"
+}
